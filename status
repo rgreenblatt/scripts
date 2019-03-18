@@ -76,9 +76,19 @@ caps_lock=""
 update_caps_lock() {
   if [ "on" = $(xset q | grep -m 1 "Caps Lock" | grep -o ':   \w\+' | grep -o '\w\+') ]
   then 
-    caps_lock="{\"name\":\"capslock\",\"instance\":\"xset\",\"color\":\"#e89393\",\"markup\":\"none\",\"full_text\":\"CAPSLOCK\"},"
+    caps_lock="{\"name\":\"capslock\",\"color\":\"#ff0000\",\"markup\":\"none\",\"full_text\":\"CAPSLOCK\"},"
   else
     caps_lock=""
+  fi
+}
+sym_lock=""
+
+update_sym_lock() {
+  if [ -f /tmp/sym_toggle ]
+  then 
+    sym_lock="{\"name\":\"symlock\",\"color\":\"#d79921\",\"markup\":\"none\",\"full_text\":\"SYMLOCK\"},"
+  else
+    sym_lock=""
   fi
 }
 
@@ -87,5 +97,6 @@ do
   read line
   update_rate
   update_caps_lock
-  echo ",[{\"full_text\":\"${rate}\" },${caps_lock}${line#,\[}" || exit 1
+  update_sym_lock
+  echo ",[{\"full_text\":\"${rate}\" },${sym_lock}${caps_lock}${line#,\[}" || exit 1
 done)
