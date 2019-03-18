@@ -2,12 +2,10 @@
 
 battery_life_over_threshold=true
 while true; do
-    BATTINFO=`acpi -b`
-    if [[ `echo $BATTINFO | grep Discharging` && `echo $BATTINFO | grep -Eo 'Discharging.*remaining' | 
-        cut -f 2 -d " " | grep -Eo "[0-9]+"` < 15 && battery_life_over_threshold ]] ; then
+    BATTINFO=`acpi -b | grep -Eo 'Discharging.*remaining'`
+    if [[ `echo $BATTINFO` && `echo $BATTINFO  | cut -f 2 -d " " | grep -Eo "[0-9]+"` -lt 15 ]] ; then
         if [ "$battery_life_over_threshold" = true ]; then
-            notify-send -u critical -t 10000 "LOW BATTERY" "$(echo $BATTINFO | 
-                grep -Eo 'Discharging.*remaining' | grep -Eo '[0-9]+%.*[0-9]')"
+            notify-send -u critical -t 10000 "LOW BATTERY" "$(echo $BATTINFO | grep -Eo '[0-9]+%.*[0-9]')"
         fi
 
         battery_life_over_threshold=false
