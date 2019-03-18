@@ -1,0 +1,11 @@
+#!/bin/bash
+
+### APT + FZF
+# remove multiple packages at once
+# mnemonic [A]pt [R]emove [P]ackage
+
+rem=$(parse_packages $(apt list --installed | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:remove]'"))
+
+if [[ -n $rem ]]; then
+  sudo apt remove $rem
+fi
