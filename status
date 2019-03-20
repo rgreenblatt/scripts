@@ -84,7 +84,7 @@ update_caps_lock() {
 sym_lock=""
 
 update_sym_lock() {
-  if [ -f /tmp/sym_toggle ]
+  if [ -f /tmp/sym_toggle_activated ]
   then 
     sym_lock="{\"name\":\"symlock\",\"color\":\"#d79921\",\"markup\":\"none\",\"full_text\":\"SYMLOCK\"},"
   else
