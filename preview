@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ -d $1 ]]; then
-    exa -l $1
+    exa --color=always -1 $1
 elif [[ -f $1 ]]; then
     bat --style=numbers,changes --color always $1
 else
