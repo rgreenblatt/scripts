@@ -3,6 +3,10 @@
 # install multiple packages at once
 # mnemonic [A]pt [I]nstall [P]ackage
 
+if [ "$1" != "-n" ]; then
+    sudo apt update
+fi
+
 inst=$(parse_packages $(apt list 2> /dev/null | tail -n +2 |
     eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:install]' --preview 'apt show \$(parse_packages {}) 2> /dev/null'"))
 
