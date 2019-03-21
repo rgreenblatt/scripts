@@ -4,8 +4,9 @@
 # upgrade multiple packages at once
 # mnemonic [A]pt [U]pgrade [P]ackage
 
-inst=$(parse_packages $(apt list --upgradable | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:remove]'"))
+upgr=$(parse_packages $(apt list --upgradable 2> /dev/null | tail -n +2 |
+    eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:upgrade]' --preview 'apt show \$(parse_packages {}) 2> /dev/null'"))
 
-if [[ -n $inst ]]; then
-  sudo apt install --only-upgrade $inst
+if [[ -n $upgr ]]; then
+  sudo apt install  --only-upgrade $upgr
 fi

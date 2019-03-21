@@ -1,10 +1,10 @@
 #!/bin/bash
-
 ### APT + FZF
 # install multiple packages at once
 # mnemonic [A]pt [I]nstall [P]ackage
 
-inst=$(parse_packages $(apt list | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:install]'"))
+inst=$(parse_packages $(apt list 2> /dev/null | tail -n +2 |
+    eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:install]' --preview 'apt show \$(parse_packages {}) 2> /dev/null'"))
 
 if [[ -n $inst ]]; then
   sudo apt install $inst

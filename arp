@@ -4,7 +4,8 @@
 # remove multiple packages at once
 # mnemonic [A]pt [R]emove [P]ackage
 
-rem=$(parse_packages $(apt list --installed | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:remove]'"))
+rem=$(parse_packages $(apt list --installed 2> /dev/null | tail -n +2 |
+    eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:remove]' --preview 'apt show \$(parse_packages {}) 2> /dev/null'"))
 
 if [[ -n $rem ]]; then
   sudo apt remove $rem
