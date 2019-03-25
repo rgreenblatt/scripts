@@ -3,7 +3,7 @@
 # install multiple packages at once
 # mnemonic [A]pt [I]nstall [P]ackage
 
-if [ "$1" != "-n" ]; then
+if [ "$1" == "-u" ]; then
     sudo apt update
 fi
 

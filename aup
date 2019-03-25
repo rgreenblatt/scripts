@@ -4,10 +4,9 @@
 # upgrade multiple packages at once
 # mnemonic [A]pt [U]pgrade [P]ackage
 
-if [ "$1" != "-n" ]; then
+if [ "$1" == "-u" ]; then
     sudo apt update
 fi
-
 
 upgr=$(parse_packages $(apt list --upgradable 2> /dev/null | tail -n +2 |
     eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:upgrade]' --preview 'apt show \$(parse_packages {}) 2> /dev/null'"))
