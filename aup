@@ -1,6 +1,6 @@
 #!/bin/bash
 
- ## APT + FZF
+### APT + FZF
 # upgrade multiple packages at once
 # mnemonic [A]pt [U]pgrade [P]ackage
 
