@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [[ -d $1 ]]; then
+if identify $1 &> /dev/null; then 
+    timg $1
+elif [[ -d $1 ]]; then
     exa --color=always -1 $1
 elif [[ -f $1 ]]; then
     bat --style=numbers,changes --color always $1
