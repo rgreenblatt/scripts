@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "START" > ~/REMOTE_TAB
+nvr -c "tabnew | call AgHandler(['', '$1'], 1)" >> ~/REMOTE_TAB
+echo "END" >> ~/REMOTE_TAB
