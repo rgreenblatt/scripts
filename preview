@@ -6,7 +6,7 @@ else
   if identify $1 &> /dev/null; then 
     timg $@
   elif [[ -d $1 ]]; then
-    exa --color=always -1 $@
+    exa --color=always -Ta $@
   elif [[ -f $1 ]]; then
     bat --style=numbers,changes --color always $@
   else
