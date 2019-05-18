@@ -1,0 +1,11 @@
+#!/bin/bash
+
+percent=$(echo "(0$1) * 100" | bc)
+echo $percent
+xbacklight -inc $percent
+
+# expression="$(xrandr --verbose | grep Brightness -m 1 | grep -o '[0-9].*')$1"
+# echo $expression
+# new_b=$(echo $expression | bc)
+# echo $new_b
+# xrandr --output $XRANDR_LAPTOP_DISPLAY --brightness "$new_b"
