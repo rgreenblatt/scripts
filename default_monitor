@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xrandr --output $XRANDR_LAPTOP_DISPLAY --right-of $XRANDR_MONITOR_DISPLAY
