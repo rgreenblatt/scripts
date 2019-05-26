@@ -2,10 +2,5 @@
 
 path=$(echo $1 | grep -Eo '.*?:') 
 path=${path::-1}
-echo $path
-cd $path
+cd $path || exit
 >&2 git -c color.status=always status | less -REX
-
-
-
-
