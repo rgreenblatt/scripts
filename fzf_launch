@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+if selection=$( compgen -c | sort | uniq | fzf ); then
+  nohup "$selection" &
+  sleep 0.00000000000000000000000001
+fi
