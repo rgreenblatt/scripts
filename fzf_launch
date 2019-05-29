@@ -2,5 +2,5 @@
 
 if selection=$( compgen -c | sort | uniq | fzf ); then
   nohup "$selection" &
-  sleep 0.00000000000000000000000001
+  sleep 0.01
 fi
