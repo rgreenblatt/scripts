@@ -110,9 +110,9 @@ notify() {
     local hints="$(concat_hints "${HINTS[@]}")"
 
     case "$URGENCY" in
-      0) (xcalib -green 1.1 5.0 100.0 -a && sleep 0.25 && xcalib -c) &;;
-      1) (xcalib -blue 1.1 30.0 100.0 -a && sleep 0.25 && xcalib -c) &;;
-      2) (xcalib -red 1.1 30.0 100.0 -a && sleep 0.25 && xcalib -c) &;;
+      0) nohup screen_flash green 5.0 &> /dev/null &;;
+      1) nohup screen_flash blue 30.0 &> /dev/null &;;
+      2) nohup screen_flash red 30.0 &> /dev/null &;;
       *) echo "Unknown urgency $URGENCY specified. Known urgency levels: low, normal, critical."
         exit 1
         ;;
