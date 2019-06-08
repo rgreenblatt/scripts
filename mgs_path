@@ -13,4 +13,6 @@ file_path=$(mgitstatus $@ |
 
 if [[ -n $file_path ]]; then
   parse_cd_status $file_path
+else
+  exit 1
 fi
