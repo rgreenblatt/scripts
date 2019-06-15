@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source "$1/.profile"
+"$1/scripts/keyboard_setup"
+
+if hash openpyn 2> /dev/null; then
+  openpyn us
+fi
