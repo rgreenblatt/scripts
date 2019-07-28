@@ -2,4 +2,4 @@
 
 command=$(tac "$QUTE_DATA_DIR/cmd-history" | fzf)
 
-echo "$command" >> "$QUTE_FIFO"
+echo "$command" >>"$QUTE_FIFO"

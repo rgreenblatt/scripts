@@ -4,12 +4,12 @@
 # mnemonic [A]pt [I]nstall [P]ackage
 
 if [ "$1" == "-u" ]; then
-    sudo apt update
+  sudo apt update
 fi
 
-inst=$(parse_packages $(apt list 2> /dev/null | tail -n +2 |
-    eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:install]' --preview 'apt show \$(parse_packages {}) 2> /dev/null'"))
+inst="$(parse_packages "$(apt list 2>/dev/null | tail -n +2 |
+  eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[apt:install]' --preview 'apt show \$(parse_packages {}) 2> /dev/null'")")"
 
 if [[ -n $inst ]]; then
-  sudo apt install $inst
+  sudo apt install "$inst"
 fi

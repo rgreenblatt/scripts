@@ -2,6 +2,6 @@
 
 xrandr --output "$XRANDR_LAPTOP_DISPLAY" --right-of "$XRANDR_MONITOR_DISPLAY"
 
-if [[ ! -z "$RESIZE_LAPTOP" ]]; then
+if [[ -n $RESIZE_LAPTOP ]]; then
   xrandr --output "$XRANDR_LAPTOP_DISPLAY" --mode "$RESIZE_LAPTOP"
 fi

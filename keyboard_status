@@ -2,14 +2,13 @@
 
 caps_lock_on=0
 sym_lock_on=0
-  
-if [ "on" = $(xset q | grep -m 1 "Caps Lock" | grep -o ':   \w\+' | 
-  grep -o '\w\+') ]
-then 
+
+if [ "on" = "$(xset q | grep -m 1 "Caps Lock" | grep -o ':   \w\+' |
+  grep -o '\w\+')" ]; then
   caps_lock_on=1
 fi
 
-if [ -f /tmp/keyboard_info/sym_toggle_activated ]; then 
+if [ -f /tmp/keyboard_info/sym_toggle_activated ]; then
   sym_lock_on=1
 fi
 

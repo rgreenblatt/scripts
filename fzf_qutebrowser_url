@@ -4,7 +4,7 @@
 
 [ -z "$QUTE_URL" ] && QUTE_URL='http://google.com'
 
-get_history () {
+get_history() {
   sqlite3 -noheader -csv -separator " " "$QUTE_DATA_DIR/history.sqlite" \
     "select url,title from history order by atime desc"
 }
@@ -12,13 +12,13 @@ get_history () {
 url=$(cat <(echo "$QUTE_URL") <(cut -d " " -f2- "$QUTE_CONFIG_DIR/quickmarks") \
   <(get_history) | fzf | cut -d " " -f1)
 
-[ -z "${url// }" ] && exit
+[ -z "${url// /}" ] && exit
 
 command="open"
 
 case $1 in
-  tab) command="open -t";;
-  -t) command="open -t";;
+tab) command="open -t" ;;
+-t) command="open -t" ;;
 esac
 
-echo "$command $url" >> "$QUTE_FIFO" || qutebrowser "$url"
+echo "$command $url" >>"$QUTE_FIFO" || qutebrowser "$url"
